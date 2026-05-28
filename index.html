@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Bitter Lesson</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8f7f3;
+      --text: #20201d;
+      --muted: #6b675f;
+      --line: #ded9ce;
+      --accent: #1f5f5b;
+      --accent-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height: 1.68;
+    }
+
+    .wrap {
+      width: min(100% - 32px, 780px);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 48px 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.15rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .meta {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.98rem;
+    }
+
+    .language-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      padding: 7px 12px;
+      line-height: 1.2;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    button[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    main {
+      padding: 28px 0 56px;
+    }
+
+    article {
+      font-size: clamp(1.04rem, 2vw, 1.16rem);
+    }
+
+    article[hidden] {
+      display: none;
+    }
+
+    article[dir="rtl"] {
+      text-align: right;
+    }
+
+    p {
+      margin: 0 0 1.15em;
+    }
+
+    @media (max-width: 520px) {
+      .wrap {
+        width: min(100% - 24px, 780px);
+      }
+
+      header {
+        padding-top: 32px;
+      }
+
+      button {
+        padding: 7px 10px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+
+      .language-switcher {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1 id="page-title">The Bitter Lesson</h1>
+      <p class="meta" id="page-meta">Rich Sutton / March 13, 2019</p>
+      <nav class="language-switcher" aria-label="Language">
+        <button type="button" data-lang="ar" aria-pressed="false">العربية</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-lang="fr" aria-pressed="false">Français</button>
+        <button type="button" data-lang="ru" aria-pressed="false">Русский</button>
+        <button type="button" data-lang="es" aria-pressed="false">Español</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article id="article-ar" lang="ar" dir="rtl" hidden>
+      <p>أكبر درس يمكن استخلاصه من سبعين عامًا من أبحاث الذكاء الاصطناعي هو أن الأساليب العامة التي تستفيد من الحوسبة هي في النهاية الأكثر فاعلية، وبفارق كبير. والسبب النهائي لذلك هو قانون مور، أو بالأحرى تعميمه: الانخفاض الأسي المستمر في تكلفة وحدة الحوسبة. أُجري معظم أبحاث الذكاء الاصطناعي كما لو أن الحوسبة المتاحة للوكيل ثابتة (وفي هذه الحالة يكون استغلال المعرفة البشرية واحدًا من السبل القليلة لتحسين الأداء)، لكن على مدى أطول قليلًا من مدة مشروع بحثي نموذجي تصبح كميات هائلة إضافية من الحوسبة متاحة لا محالة. وسعيًا إلى تحسين يحدث فرقًا على المدى القصير، يحاول الباحثون استغلال معرفتهم البشرية بالمجال، لكن الشيء الوحيد المهم على المدى الطويل هو استغلال الحوسبة. لا يلزم أن يتعارض هذان الأمران، لكنهما في الممارسة غالبًا ما يتعارضان. فالوقت المصروف على أحدهما هو وقت لا يُصرف على الآخر. وهناك التزامات نفسية بالاستثمار في نهج دون آخر. كما أن نهج المعرفة البشرية يميل إلى تعقيد الأساليب بطرق تجعلها أقل ملاءمة للاستفادة من الأساليب العامة التي تستغل الحوسبة. وقد وُجدت أمثلة كثيرة على تعلّم باحثي الذكاء الاصطناعي المتأخر لهذا الدرس المر، ومن المفيد أن نستعرض بعض أبرزها.</p>
+      <p>في شطرنج الحاسوب، كانت الأساليب التي هزمت بطل العالم كاسباروف عام 1997 قائمة على بحث عميق وهائل. في ذلك الوقت نظر إليها معظم باحثي شطرنج الحاسوب باستياء، إذ كانوا قد سعوا إلى أساليب تستغل الفهم البشري للبنية الخاصة للشطرنج. وعندما ثبت أن نهجًا أبسط قائمًا على البحث، مع عتاد وبرمجيات خاصة، أكثر فاعلية بكثير، لم يكن باحثو الشطرنج القائمون على المعرفة البشرية خاسرين طيبين. قالوا إن بحث "القوة الغاشمة" ربما فاز هذه المرة، لكنه ليس استراتيجية عامة، وعلى أي حال فليس هكذا يلعب الناس الشطرنج. كان هؤلاء الباحثون يريدون أن تفوز الأساليب القائمة على المدخلات البشرية، وخاب أملهم حين لم تفعل.</p>
+      <p>في لعبة غو الحاسوبية شوهد نمط مشابه من تقدم البحث، لكنه تأخر عشرين عامًا إضافية. بُذلت جهود أولية هائلة لتجنب البحث بالاعتماد على المعرفة البشرية أو على السمات الخاصة للعبة، لكن كل تلك الجهود ثبت أنها غير ذات صلة، أو أسوأ من ذلك، بمجرد تطبيق البحث بفاعلية وعلى نطاق واسع. وكان مهمًا أيضًا استخدام التعلم باللعب الذاتي لتعلم دالة قيمة (كما كان الحال في ألعاب كثيرة أخرى وحتى في الشطرنج، على الرغم من أن التعلم لم يلعب دورًا كبيرًا في برنامج عام 1997 الذي هزم بطل عالم لأول مرة). إن التعلم باللعب الذاتي، والتعلم عمومًا، يشبه البحث من حيث إنه يتيح جلب كميات هائلة من الحوسبة إلى المسألة. البحث والتعلم هما أهم فئتين من التقنيات لاستخدام كميات ضخمة من الحوسبة في أبحاث الذكاء الاصطناعي. وفي غو الحاسوبية، كما في شطرنج الحاسوب، اتجه الجهد الأولي للباحثين إلى استخدام الفهم البشري (كي تكون الحاجة إلى البحث أقل)، ولم يتحقق النجاح الأكبر بكثير إلا لاحقًا، عندما جرى تبني البحث والتعلم.</p>
+      <p>في التعرف على الكلام، كانت هناك منافسة مبكرة برعاية داربا في السبعينيات. ضمت المشاركات مجموعة من الأساليب الخاصة التي استفادت من المعرفة البشرية: معرفة الكلمات، والفونيمات، والجهاز الصوتي البشري، وغير ذلك. وفي الجانب الآخر كانت هناك أساليب أحدث ذات طبيعة إحصائية، تستخدم قدرًا أكبر بكثير من الحوسبة، ومبنية على نماذج ماركوف الخفية (HMMs). ومرة أخرى، تفوقت الأساليب الإحصائية على الأساليب القائمة على المعرفة البشرية. أدى ذلك إلى تحول كبير في معالجة اللغة الطبيعية كلها، تحول جرى تدريجيًا عبر عقود، حيث أصبحت الإحصاءات والحوسبة تهيمنان على المجال. والصعود الأخير للتعلم العميق في التعرف على الكلام هو أحدث خطوة في هذا الاتجاه المتواصل. تعتمد أساليب التعلم العميق اعتمادًا أقل حتى على المعرفة البشرية، وتستخدم قدرًا أكبر من الحوسبة، إلى جانب التعلم على مجموعات تدريب هائلة، لتنتج أنظمة تعرف على الكلام أفضل بكثير. وكما في الألعاب، حاول الباحثون دائمًا صنع أنظمة تعمل بالطريقة التي ظنوا أن عقولهم تعمل بها؛ حاولوا وضع تلك المعرفة في أنظمتهم، لكن ذلك ثبت في النهاية أنه عكسي الأثر، وهدر هائل لوقت الباحثين، عندما أصبحت الحوسبة الضخمة متاحة بفضل قانون مور ووُجدت وسيلة لاستخدامها جيدًا.</p>
+      <p>في الرؤية الحاسوبية ظهر نمط مشابه. فقد تصورت الأساليب المبكرة الرؤية على أنها بحث عن الحواف، أو الأسطوانات المعممة، أو في صورة ميزات SIFT. أما اليوم فقد جرى التخلي عن كل ذلك. تستخدم الشبكات العصبية الحديثة للتعلم العميق مفهومي الالتفاف وأنواعًا معينة من الثبات فقط، وتحقق أداء أفضل بكثير.</p>
+      <p>هذا درس كبير. ونحن كمجال لم نتعلمه بعد على نحو كامل، إذ ما زلنا نرتكب النوع نفسه من الأخطاء. ولكي نرى ذلك ونقاومه بفاعلية، علينا أن نفهم جاذبية هذه الأخطاء. علينا أن نتعلم الدرس المر: إن بناء ما نظن أنه طريقة تفكيرنا داخل الأنظمة لا ينجح على المدى الطويل. يقوم الدرس المر على ملاحظات تاريخية مفادها أن 1) باحثي الذكاء الاصطناعي حاولوا كثيرًا بناء المعرفة داخل وكلائهم، و2) هذا يساعد دائمًا على المدى القصير ويُرضي الباحث شخصيًا، لكنه 3) على المدى الطويل يصل إلى سقف بل يعيق مزيدًا من التقدم، و4) يأتي التقدم الاختراقي في النهاية من نهج معاكس قائم على توسيع الحوسبة بواسطة البحث والتعلم. ويكون النجاح النهائي مشوبًا بالمرارة، وغالبًا لا يُهضم بالكامل، لأنه نجاح على حساب نهج مفضل ومتمحور حول الإنسان.</p>
+      <p>أحد الأشياء التي ينبغي تعلمها من الدرس المر هو القوة العظيمة للأساليب العامة الغرض، أي الأساليب التي تواصل التوسع مع زيادة الحوسبة حتى عندما تصبح الحوسبة المتاحة عظيمة جدًا. والطريقتان اللتان تبدوان قابلتين للتوسع اعتباطيًا بهذه الصورة هما البحث والتعلم.</p>
+      <p>النقطة العامة الثانية التي ينبغي تعلمها من الدرس المر هي أن المحتويات الفعلية للعقول معقدة إلى حد هائل ولا سبيل إلى اختزالها؛ ينبغي أن نتوقف عن محاولة إيجاد طرق بسيطة للتفكير في محتويات العقول، مثل طرق بسيطة للتفكير في الفضاء أو الأشياء أو الوكلاء المتعددين أو التناظرات. كل هذه أجزاء من العالم الخارجي الاعتباطي والمعقد بطبيعته. وليست هي ما ينبغي بناؤه في الأنظمة، لأن تعقيدها لا نهاية له؛ بدلًا من ذلك ينبغي أن نبني فقط المناهج الفوقية التي تستطيع العثور على هذا التعقيد الاعتباطي والتقاطه. وجوهري في هذه المناهج أنها تستطيع إيجاد تقريبات جيدة، لكن البحث عنها يجب أن تقوم به أساليبنا، لا أن نقوم به نحن. نريد وكلاء ذكاء اصطناعي يستطيعون الاكتشاف كما نستطيع، لا وكلاء يحتويون ما اكتشفناه. إن بناء اكتشافاتنا داخلها لا يفعل إلا أن يزيد صعوبة رؤية كيفية إنجاز عملية الاكتشاف نفسها.</p>
+    </article>
+
+    <article id="article-zh" lang="zh-CN" hidden>
+      <p>从 70 年人工智能研究中可以读出的最大教训是：利用计算的通用方法最终最有效，而且优势巨大。根本原因是摩尔定律，或者更准确地说，是每单位计算成本持续指数级下降这一更一般的趋势。大多数 AI 研究一直像可供智能体使用的计算量是恒定的一样来进行（在这种情况下，利用人类知识几乎是提高性能的唯一办法之一），但只要时间略长于一个典型研究项目，必然会有大得多的计算量可用。研究者为了在较短期内取得有意义的改进，会设法利用自己对领域的人类知识；但从长期看，唯一重要的是利用计算。二者并非必然相互冲突，但在实践中往往如此。花在一个方向上的时间就是没有花在另一个方向上的时间。人们会在心理上投入并承诺某一种方法。而且，基于人类知识的方法往往会把方法复杂化，使它们更不适合利用基于计算的通用方法。AI 研究者迟迟才学到这个苦涩教训的例子很多，回顾其中最突出的几个很有启发。</p>
+      <p>在计算机国际象棋中，1997 年击败世界冠军卡斯帕罗夫的方法基于大规模的深度搜索。当时，大多数计算机国际象棋研究者对此感到沮丧，因为他们一直追求的是利用人类对国际象棋特殊结构的理解的方法。当一种更简单的、基于搜索的方法凭借专用硬件和软件证明自己有效得多时，这些基于人类知识的国际象棋研究者并不是很能接受失败。他们说，“蛮力”搜索也许这次赢了，但它不是一种通用策略，而且无论如何，人类并不是这样下棋的。这些研究者希望基于人类输入的方法获胜，而当它们没有获胜时，他们感到失望。</p>
+      <p>在计算机围棋中，研究进展呈现出类似的模式，只是又晚了 20 年。早期投入了巨大努力来避免搜索，试图利用人类知识或利用围棋的特殊性质，但一旦搜索在规模上得到有效应用，所有这些努力都被证明无关紧要，甚至更糟。同样重要的是使用自我对弈学习来学习价值函数（在许多其他游戏中也是如此，甚至在国际象棋中也是如此，尽管学习在 1997 年首次击败世界冠军的程序中并没有发挥很大作用）。自我对弈学习，以及一般意义上的学习，和搜索类似，因为它使海量计算能够被用于问题之上。搜索和学习是 AI 研究中利用海量计算的两大最重要技术类别。在计算机围棋中，就像在计算机国际象棋中一样，研究者最初的努力都指向利用人类理解（以便减少所需的搜索），直到后来拥抱搜索和学习，才取得了大得多的成功。</p>
+      <p>在语音识别中，20 世纪 70 年代有过一次由 DARPA 赞助的早期竞赛。参赛者包括大量利用人类知识的特殊方法，例如词汇知识、音素知识、人类发声道知识等等。另一边则是较新的、更具统计性质的方法，它们做了更多计算，并基于隐马尔可夫模型（HMM）。又一次，统计方法胜过了基于人类知识的方法。这导致整个自然语言处理发生重大转变，几十年间逐渐由统计和计算主导这个领域。深度学习近年在语音识别中的兴起，是这一持续方向上的最新一步。深度学习方法更少依赖人类知识，使用更多计算，并在巨大的训练集上学习，从而产生了好得多的语音识别系统。与游戏中的情形一样，研究者总是试图制造出按照他们认为自己大脑工作方式来工作的系统；他们试图把那种知识放进系统里。但当摩尔定律使海量计算成为可能，并且人们找到办法把它用好时，这最终被证明是适得其反的，也是对研究者时间的巨大浪费。</p>
+      <p>在计算机视觉中，也有类似的模式。早期方法把视觉设想为寻找边缘，或寻找广义圆柱，或用 SIFT 特征来表述。但今天这一切都被抛弃了。现代深度学习神经网络只使用卷积和某些不变性这样的概念，却表现得好得多。</p>
+      <p>这是一个很大的教训。作为一个领域，我们仍然没有彻底学会它，因为我们还在继续犯同一类错误。为了看清这一点并有效抵抗它，我们必须理解这些错误的吸引力。我们必须学会这个苦涩的教训：把我们以为自己如何思考的方式内建进去，从长远看行不通。这个苦涩教训基于一些历史观察：1）AI 研究者常常试图把知识构建进他们的智能体；2）这总是在短期内有帮助，也让研究者本人感到满足；但 3）从长期看，它会达到平台期，甚至阻碍进一步进展；4）突破性进展最终来自相反的路线，也就是通过搜索和学习来扩展计算。最终的成功带有苦涩的味道，而且常常没有被完全消化，因为这是一种战胜受人偏爱的人类中心路线的成功。</p>
+      <p>我们应该从这个苦涩教训中学到的一件事，是通用方法的巨大力量；这些方法会随着计算量增加而持续扩展，即使可用计算已经变得非常巨大。看起来能够以这种方式任意扩展的两种方法，是搜索和学习。</p>
+      <p>从这个苦涩教训中还应该学到的第二个一般性要点是：心智的实际内容极其复杂，复杂到不可救药；我们应该停止试图为心智内容寻找简单的思考方式，例如简单地思考空间、物体、多个智能体或对称性。所有这些都是任意而内在复杂的外部世界的一部分。它们不应该被内建进去，因为它们的复杂性没有尽头；相反，我们应该只内建那些能够发现并捕捉这种任意复杂性的元方法。对这些方法来说，关键在于它们能够找到良好的近似，但寻找这些近似的过程应该由我们的方法来完成，而不是由我们亲自完成。我们想要的是能够像我们一样发现的 AI 智能体，而不是包含我们已经发现之物的智能体。把我们的发现内建进去，只会让我们更难看清发现过程本身如何完成。</p>
+    </article>
+
+    <article id="article-en" lang="en">
+      <p>The biggest lesson that can be read from 70 years of AI research is that general methods that leverage computation are ultimately the most effective, and by a large margin. The ultimate reason for this is Moore's law, or rather its generalization of continued exponentially falling cost per unit of computation. Most AI research has been conducted as if the computation available to the agent were constant (in which case leveraging human knowledge would be one of the only ways to improve performance) but, over a slightly longer time than a typical research project, massively more computation inevitably becomes available. Seeking an improvement that makes a difference in the shorter term, researchers seek to leverage their human knowledge of the domain, but the only thing that matters in the long run is the leveraging of computation. These two need not run counter to each other, but in practice they tend to. Time spent on one is time not spent on the other. There are psychological commitments to investment in one approach or the other. And the human-knowledge approach tends to complicate methods in ways that make them less suited to taking advantage of general methods leveraging computation. There were many examples of AI researchers' belated learning of this bitter lesson, and it is instructive to review some of the most prominent.</p>
+      <p>In computer chess, the methods that defeated the world champion, Kasparov, in 1997, were based on massive, deep search. At the time, this was looked upon with dismay by the majority of computer-chess researchers who had pursued methods that leveraged human understanding of the special structure of chess. When a simpler, search-based approach with special hardware and software proved vastly more effective, these human-knowledge-based chess researchers were not good losers. They said that "brute force" search may have won this time, but it was not a general strategy, and anyway it was not how people played chess. These researchers wanted methods based on human input to win and were disappointed when they did not.</p>
+      <p>A similar pattern of research progress was seen in computer Go, only delayed by a further 20 years. Enormous initial efforts went into avoiding search by taking advantage of human knowledge, or of the special features of the game, but all those efforts proved irrelevant, or worse, once search was applied effectively at scale. Also important was the use of learning by self play to learn a value function (as it was in many other games and even in chess, although learning did not play a big role in the 1997 program that first beat a world champion). Learning by self play, and learning in general, is like search in that it enables massive computation to be brought to bear. Search and learning are the two most important classes of techniques for utilizing massive amounts of computation in AI research. In computer Go, as in computer chess, researchers' initial effort was directed towards utilizing human understanding (so that less search was needed) and only much later was much greater success had by embracing search and learning.</p>
+      <p>In speech recognition, there was an early competition, sponsored by DARPA, in the 1970s. Entrants included a host of special methods that took advantage of human knowledge, knowledge of words, of phonemes, of the human vocal tract, etc. On the other side were newer methods that were more statistical in nature and did much more computation, based on hidden Markov models (HMMs). Again, the statistical methods won out over the human-knowledge-based methods. This led to a major change in all of natural language processing, gradually over decades, where statistics and computation came to dominate the field. The recent rise of deep learning in speech recognition is the most recent step in this consistent direction. Deep learning methods rely even less on human knowledge, and use even more computation, together with learning on huge training sets, to produce dramatically better speech recognition systems. As in the games, researchers always tried to make systems that worked the way the researchers thought their own minds worked; they tried to put that knowledge in their systems, but it proved ultimately counterproductive, and a colossal waste of researchers' time, when, through Moore's law, massive computation became available and a means was found to put it to good use.</p>
+      <p>In computer vision, there has been a similar pattern. Early methods conceived of vision as searching for edges, or generalized cylinders, or in terms of SIFT features. But today all this is discarded. Modern deep-learning neural networks use only the notions of convolution and certain kinds of invariances, and perform much better.</p>
+      <p>This is a big lesson. As a field, we still have not thoroughly learned it, as we are continuing to make the same kind of mistakes. To see this, and to effectively resist it, we have to understand the appeal of these mistakes. We have to learn the bitter lesson that building in how we think we think does not work in the long run. The bitter lesson is based on the historical observations that 1) AI researchers have often tried to build knowledge into their agents, 2) this always helps in the short term, and is personally satisfying to the researcher, but 3) in the long run it plateaus and even inhibits further progress, and 4) breakthrough progress eventually arrives by an opposing approach based on scaling computation by search and learning. The eventual success is tinged with bitterness, and often incompletely digested, because it is success over a favored, human-centric approach.</p>
+      <p>One thing that should be learned from the bitter lesson is the great power of general purpose methods, of methods that continue to scale with increased computation even as the available computation becomes very great. The two methods that seem to scale arbitrarily in this way are search and learning.</p>
+      <p>The second general point to be learned from the bitter lesson is that the actual contents of minds are tremendously, irredeemably complex; we should stop trying to find simple ways to think about the contents of minds, such as simple ways to think about space, objects, multiple agents, or symmetries. All these are part of the arbitrary, intrinsically complex, outside world. They are not what should be built in, as their complexity is endless; instead we should build in only the meta-methods that can find and capture this arbitrary complexity. Essential to these methods is that they can find good approximations, but the search for them should be by our methods, not by us. We want AI agents that can discover like we can, not which contain what we have discovered. Building in our discoveries only makes it harder to see how the discovering process can be done.</p>
+    </article>
+
+    <article id="article-fr" lang="fr" hidden>
+      <p>Le plus grand enseignement que l'on puisse tirer de 70 années de recherche en IA est que les méthodes générales qui exploitent le calcul sont, au bout du compte, les plus efficaces, et de très loin. La raison profonde en est la loi de Moore, ou plutôt sa généralisation: la baisse exponentielle continue du coût par unité de calcul. La plupart des recherches en IA ont été menées comme si le calcul disponible pour l'agent était constant (auquel cas exploiter le savoir humain serait l'une des seules façons d'améliorer les performances), alors que, sur une durée à peine plus longue que celle d'un projet de recherche typique, une quantité massivement plus grande de calcul devient inévitablement disponible. Cherchant une amélioration qui fasse une différence à court terme, les chercheurs tentent d'exploiter leur connaissance humaine du domaine, mais la seule chose qui compte à long terme est l'exploitation du calcul. Ces deux orientations n'ont pas besoin de s'opposer, mais en pratique elles tendent à le faire. Le temps consacré à l'une n'est pas consacré à l'autre. Il existe des engagements psychologiques envers l'investissement dans une approche plutôt que dans l'autre. Et l'approche fondée sur le savoir humain tend à compliquer les méthodes d'une manière qui les rend moins aptes à tirer parti des méthodes générales exploitant le calcul. Les exemples où les chercheurs en IA ont appris tardivement cette leçon amère sont nombreux, et il est instructif d'en revoir quelques-uns parmi les plus marquants.</p>
+      <p>Aux échecs informatiques, les méthodes qui ont vaincu le champion du monde, Kasparov, en 1997, reposaient sur une recherche massive et profonde. À l'époque, la majorité des chercheurs en échecs informatiques, qui avaient poursuivi des méthodes exploitant la compréhension humaine de la structure particulière des échecs, ont accueilli cela avec consternation. Quand une approche plus simple, fondée sur la recherche, avec du matériel et des logiciels spécialisés, s'est révélée beaucoup plus efficace, ces chercheurs attachés à la connaissance humaine n'ont pas été de bons perdants. Ils ont dit que la recherche par "force brute" avait peut-être gagné cette fois-ci, mais que ce n'était pas une stratégie générale, et qu'en tout cas ce n'était pas ainsi que les gens jouaient aux échecs. Ces chercheurs voulaient que les méthodes fondées sur l'apport humain gagnent, et ils ont été déçus quand elles n'ont pas gagné.</p>
+      <p>Un schéma similaire de progrès de la recherche s'est observé dans le go informatique, avec seulement vingt ans de retard supplémentaires. D'énormes efforts initiaux ont été consacrés à éviter la recherche en tirant parti du savoir humain, ou des caractéristiques propres au jeu, mais tous ces efforts se sont révélés sans pertinence, voire pires, une fois que la recherche a été appliquée efficacement à grande échelle. L'utilisation de l'apprentissage par auto-jeu pour apprendre une fonction de valeur a également été importante (comme dans beaucoup d'autres jeux et même aux échecs, bien que l'apprentissage n'ait pas joué un grand rôle dans le programme de 1997 qui a battu pour la première fois un champion du monde). L'apprentissage par auto-jeu, et l'apprentissage en général, ressemble à la recherche en ce qu'il permet de mobiliser une quantité massive de calcul. La recherche et l'apprentissage sont les deux classes de techniques les plus importantes pour utiliser de très grandes quantités de calcul dans la recherche en IA. Dans le go informatique, comme aux échecs informatiques, l'effort initial des chercheurs visait à utiliser la compréhension humaine (afin de nécessiter moins de recherche), et ce n'est que beaucoup plus tard qu'un succès bien plus grand est venu de l'adoption de la recherche et de l'apprentissage.</p>
+      <p>En reconnaissance vocale, il y eut une première compétition, organisée par la DARPA, dans les années 1970. Les participants comprenaient quantité de méthodes spécialisées qui tiraient parti du savoir humain: connaissance des mots, des phonèmes, du conduit vocal humain, etc. En face se trouvaient des méthodes plus récentes, de nature plus statistique, qui effectuaient beaucoup plus de calcul et reposaient sur des modèles de Markov cachés (HMM). Là encore, les méthodes statistiques l'ont emporté sur les méthodes fondées sur le savoir humain. Cela a entraîné un changement majeur dans tout le traitement automatique des langues, progressivement sur plusieurs décennies, où les statistiques et le calcul en sont venus à dominer le domaine. L'essor récent de l'apprentissage profond en reconnaissance vocale est l'étape la plus récente de cette direction constante. Les méthodes d'apprentissage profond s'appuient encore moins sur le savoir humain, utilisent encore plus de calcul et apprennent sur d'immenses ensembles d'entraînement pour produire des systèmes de reconnaissance vocale spectaculairement meilleurs. Comme dans les jeux, les chercheurs ont toujours essayé de fabriquer des systèmes qui fonctionnaient comme ils pensaient que leur propre esprit fonctionnait; ils essayaient de mettre cette connaissance dans leurs systèmes. Mais cela s'est révélé finalement contre-productif, et un gaspillage colossal du temps des chercheurs, lorsque, grâce à la loi de Moore, un calcul massif est devenu disponible et qu'un moyen a été trouvé pour l'utiliser efficacement.</p>
+      <p>En vision par ordinateur, on retrouve un schéma similaire. Les premières méthodes concevaient la vision comme une recherche de contours, ou de cylindres généralisés, ou en termes de caractéristiques SIFT. Mais aujourd'hui tout cela est écarté. Les réseaux neuronaux modernes d'apprentissage profond n'utilisent que les notions de convolution et certains types d'invariances, et ils obtiennent de bien meilleurs résultats.</p>
+      <p>C'est une grande leçon. En tant que domaine, nous ne l'avons toujours pas pleinement apprise, car nous continuons à commettre le même type d'erreurs. Pour voir cela, et pour y résister efficacement, nous devons comprendre l'attrait de ces erreurs. Nous devons apprendre la leçon amère: intégrer la façon dont nous pensons penser ne marche pas à long terme. La leçon amère repose sur des observations historiques selon lesquelles 1) les chercheurs en IA ont souvent essayé d'intégrer de la connaissance dans leurs agents, 2) cela aide toujours à court terme et satisfait personnellement le chercheur, mais 3) à long terme cela atteint un plateau et inhibe même les progrès ultérieurs, et 4) les percées finissent par venir d'une approche opposée, fondée sur le passage à l'échelle du calcul par la recherche et l'apprentissage. Le succès final est teinté d'amertume, et souvent incomplètement digéré, parce qu'il est un succès contre une approche favorite, centrée sur l'humain.</p>
+      <p>Une chose à apprendre de la leçon amère est la grande puissance des méthodes générales, des méthodes qui continuent à passer à l'échelle avec l'augmentation du calcul, même lorsque le calcul disponible devient très grand. Les deux méthodes qui semblent pouvoir passer à l'échelle arbitrairement de cette manière sont la recherche et l'apprentissage.</p>
+      <p>Le second point général à apprendre de la leçon amère est que les contenus réels des esprits sont extraordinairement, irrémédiablement complexes; nous devrions cesser de chercher des façons simples de penser les contenus des esprits, comme des façons simples de penser l'espace, les objets, les agents multiples ou les symétries. Tout cela fait partie du monde extérieur arbitraire et intrinsèquement complexe. Ce n'est pas ce qu'il faut intégrer, car leur complexité est sans fin; nous devrions plutôt intégrer seulement les méta-méthodes capables de trouver et de capturer cette complexité arbitraire. Ce qui est essentiel à ces méthodes, c'est qu'elles puissent trouver de bonnes approximations, mais la recherche de ces approximations devrait être menée par nos méthodes, non par nous. Nous voulons des agents d'IA qui puissent découvrir comme nous le pouvons, non des agents qui contiennent ce que nous avons découvert. Intégrer nos découvertes ne fait que rendre plus difficile de voir comment le processus de découverte peut être accompli.</p>
+    </article>
+
+    <article id="article-ru" lang="ru" hidden>
+      <p>Главный урок, который можно извлечь из 70 лет исследований ИИ, состоит в том, что общие методы, использующие вычисления, в конечном счете оказываются самыми эффективными, причем с большим отрывом. Конечная причина этого - закон Мура, точнее его обобщение: продолжающееся экспоненциальное снижение стоимости единицы вычислений. Большая часть исследований ИИ велась так, как будто вычислительные ресурсы, доступные агенту, постоянны (в таком случае использование человеческих знаний было бы одним из немногих способов повысить эффективность), но на промежутке времени лишь немного более длинном, чем типичный исследовательский проект, неизбежно становится доступно несравнимо больше вычислений. Стремясь получить улучшение, заметное в краткосрочной перспективе, исследователи пытаются использовать свои человеческие знания о предметной области, но в долгосрочной перспективе имеет значение только использование вычислений. Эти два подхода не обязаны противоречить друг другу, но на практике часто противоречат. Время, потраченное на один, не тратится на другой. Существуют психологические привязанности к вложениям в тот или иной подход. Кроме того, подход, основанный на человеческих знаниях, обычно усложняет методы так, что они хуже приспособлены к использованию общих методов, опирающихся на вычисления. Было много примеров того, как исследователи ИИ с опозданием усваивали этот горький урок, и полезно рассмотреть самые заметные из них.</p>
+      <p>В компьютерных шахматах методы, победившие чемпиона мира Каспарова в 1997 году, основывались на массовом глубоком поиске. В то время большинство исследователей компьютерных шахмат, которые развивали методы, использующие человеческое понимание особой структуры шахмат, восприняли это с огорчением. Когда более простой подход, основанный на поиске, со специальным аппаратным и программным обеспечением оказался гораздо эффективнее, эти исследователи шахмат, опиравшиеся на человеческие знания, не умели достойно проигрывать. Они говорили, что поиск "грубой силой" мог победить на этот раз, но это не общая стратегия, да и вообще люди играют в шахматы не так. Эти исследователи хотели, чтобы победили методы, основанные на человеческом вкладе, и были разочарованы, когда этого не произошло.</p>
+      <p>Похожая картина исследовательского прогресса наблюдалась в компьютерном го, только с задержкой еще на 20 лет. Огромные первоначальные усилия были направлены на то, чтобы избежать поиска за счет человеческих знаний или особых свойств игры, но все эти усилия оказались несущественными, а иногда и вредными, как только поиск был эффективно применен в масштабе. Важным было и использование обучения через игру с самим собой для обучения функции ценности (как во многих других играх и даже в шахматах, хотя обучение не играло большой роли в программе 1997 года, впервые победившей чемпиона мира). Обучение через игру с самим собой, как и обучение вообще, похоже на поиск тем, что позволяет привлечь к задаче огромные вычислительные ресурсы. Поиск и обучение - два важнейших класса методов для использования больших объемов вычислений в исследованиях ИИ. В компьютерном го, как и в компьютерных шахматах, первоначальные усилия исследователей были направлены на использование человеческого понимания (чтобы требовалось меньше поиска), и только гораздо позже намного больший успех пришел с принятием поиска и обучения.</p>
+      <p>В распознавании речи в 1970-х годах был ранний конкурс, спонсированный DARPA. Среди участников было множество специальных методов, использовавших человеческие знания: знания о словах, фонемах, человеческом голосовом тракте и так далее. С другой стороны были более новые методы, более статистические по своей природе, которые выполняли гораздо больше вычислений и основывались на скрытых марковских моделях (HMM). И снова статистические методы победили методы, основанные на человеческих знаниях. Это привело к крупному изменению во всей обработке естественного языка, постепенно, на протяжении десятилетий, когда статистика и вычисления стали доминировать в области. Недавний рост глубокого обучения в распознавании речи - самый новый шаг в этом последовательном направлении. Методы глубокого обучения еще меньше полагаются на человеческие знания, используют еще больше вычислений и учатся на огромных обучающих наборах, чтобы создавать значительно более качественные системы распознавания речи. Как и в играх, исследователи всегда пытались создавать системы, работающие так, как, по их мнению, работает их собственный разум; они пытались вложить это знание в свои системы. Но в итоге это оказалось контрпродуктивным и стало колоссальной тратой времени исследователей, когда благодаря закону Мура стали доступны огромные вычисления и был найден способ эффективно их использовать.</p>
+      <p>В компьютерном зрении наблюдалась похожая картина. Ранние методы представляли зрение как поиск границ, или обобщенных цилиндров, или в терминах признаков SIFT. Но сегодня все это отброшено. Современные нейронные сети глубокого обучения используют только понятия свертки и некоторых видов инвариантности, и работают гораздо лучше.</p>
+      <p>Это большой урок. Как область, мы все еще не усвоили его полностью, потому что продолжаем совершать ошибки того же типа. Чтобы увидеть это и эффективно этому сопротивляться, нужно понять привлекательность этих ошибок. Мы должны усвоить горький урок: встраивание того, как мы думаем, что мы думаем, не работает в долгосрочной перспективе. Горький урок основан на исторических наблюдениях: 1) исследователи ИИ часто пытались встроить знания в своих агентов, 2) это всегда помогает в краткосрочной перспективе и лично удовлетворяет исследователя, но 3) в долгосрочной перспективе выходит на плато и даже тормозит дальнейший прогресс, и 4) прорывной прогресс в конце концов приходит от противоположного подхода, основанного на масштабировании вычислений через поиск и обучение. Итоговый успех окрашен горечью и часто не до конца осмыслен, потому что это успех над любимым, человекоцентричным подходом.</p>
+      <p>Один вывод из горького урока - огромная сила методов общего назначения, методов, которые продолжают масштабироваться с ростом вычислений даже тогда, когда доступные вычисления становятся очень большими. Два метода, которые, кажется, могут масштабироваться таким образом почти без ограничений, - это поиск и обучение.</p>
+      <p>Второй общий вывод из горького урока состоит в том, что фактическое содержимое умов чрезвычайно, безнадежно сложно; нам следует перестать искать простые способы думать о содержимом умов, например простые способы думать о пространстве, объектах, множественных агентах или симметриях. Все это части произвольного, внутренне сложного внешнего мира. Не это следует встраивать, потому что их сложность бесконечна; вместо этого следует встраивать только метаметоды, которые могут находить и захватывать эту произвольную сложность. Для этих методов важно, что они могут находить хорошие приближения, но поиск этих приближений должны вести наши методы, а не мы сами. Нам нужны агенты ИИ, которые могут открывать так же, как можем мы, а не агенты, содержащие то, что мы уже открыли. Встраивание наших открытий только усложняет понимание того, как может быть выполнен сам процесс открытия.</p>
+    </article>
+
+    <article id="article-es" lang="es" hidden>
+      <p>La mayor lección que puede extraerse de 70 años de investigación en IA es que los métodos generales que aprovechan la computación terminan siendo los más eficaces, y por un margen amplio. La razón última es la ley de Moore, o más bien su generalización: la caída exponencial continua del coste por unidad de computación. La mayor parte de la investigación en IA se ha llevado a cabo como si la computación disponible para el agente fuera constante (en cuyo caso aprovechar el conocimiento humano sería una de las pocas formas de mejorar el rendimiento), pero en un plazo apenas más largo que el de un proyecto de investigación típico, inevitablemente se vuelve disponible una cantidad de computación muchísimo mayor. Al buscar una mejora que marque una diferencia a corto plazo, los investigadores intentan aprovechar su conocimiento humano del dominio, pero lo único que importa a largo plazo es aprovechar la computación. Estas dos cosas no tienen por qué estar enfrentadas, pero en la práctica tienden a estarlo. El tiempo dedicado a una es tiempo no dedicado a la otra. Hay compromisos psicológicos con la inversión en un enfoque u otro. Y el enfoque basado en el conocimiento humano tiende a complicar los métodos de formas que los hacen menos aptos para beneficiarse de métodos generales que aprovechan la computación. Hubo muchos ejemplos de investigadores de IA que aprendieron tarde esta amarga lección, y es instructivo repasar algunos de los más destacados.</p>
+      <p>En el ajedrez por computadora, los métodos que derrotaron al campeón mundial Kasparov en 1997 se basaban en una búsqueda masiva y profunda. En aquel momento, la mayoría de los investigadores de ajedrez por computadora, que habían perseguido métodos que aprovechaban la comprensión humana de la estructura especial del ajedrez, lo miraron con desánimo. Cuando un enfoque más simple, basado en la búsqueda, con hardware y software especiales, resultó enormemente más eficaz, estos investigadores de ajedrez basados en el conocimiento humano no fueron buenos perdedores. Dijeron que la búsqueda por "fuerza bruta" quizá había ganado esa vez, pero que no era una estrategia general y, en cualquier caso, no era así como jugaban las personas al ajedrez. Estos investigadores querían que ganaran los métodos basados en aportaciones humanas, y se decepcionaron cuando no lo hicieron.</p>
+      <p>En el Go por computadora se observó un patrón similar de progreso investigador, solo que retrasado otros 20 años. Se dedicaron enormes esfuerzos iniciales a evitar la búsqueda aprovechando el conocimiento humano o las características especiales del juego, pero todos esos esfuerzos resultaron irrelevantes, o peor, una vez que la búsqueda se aplicó de manera eficaz a escala. También fue importante el uso del aprendizaje mediante autojuego para aprender una función de valor (como ocurrió en muchos otros juegos e incluso en el ajedrez, aunque el aprendizaje no desempeñó un papel importante en el programa de 1997 que venció por primera vez a un campeón mundial). El aprendizaje mediante autojuego, y el aprendizaje en general, se parecen a la búsqueda en que permiten aplicar cantidades masivas de computación. La búsqueda y el aprendizaje son las dos clases de técnicas más importantes para utilizar grandes cantidades de computación en la investigación de IA. En el Go por computadora, como en el ajedrez por computadora, el esfuerzo inicial de los investigadores se dirigió a utilizar la comprensión humana (para que se necesitara menos búsqueda), y solo mucho más tarde llegó un éxito mucho mayor al adoptar la búsqueda y el aprendizaje.</p>
+      <p>En el reconocimiento de voz hubo una competencia temprana, patrocinada por DARPA, en la década de 1970. Los participantes incluían una gran cantidad de métodos especiales que aprovechaban el conocimiento humano: conocimiento de palabras, de fonemas, del tracto vocal humano, etc. Del otro lado había métodos más nuevos, de naturaleza más estadística, que hacían mucha más computación y se basaban en modelos ocultos de Markov (HMM). Una vez más, los métodos estadísticos se impusieron a los métodos basados en conocimiento humano. Esto provocó un gran cambio en todo el procesamiento del lenguaje natural, gradualmente durante décadas, en el que la estadística y la computación llegaron a dominar el campo. El reciente auge del aprendizaje profundo en el reconocimiento de voz es el paso más reciente en esta dirección constante. Los métodos de aprendizaje profundo dependen aún menos del conocimiento humano y usan aún más computación, junto con aprendizaje sobre enormes conjuntos de entrenamiento, para producir sistemas de reconocimiento de voz drásticamente mejores. Como en los juegos, los investigadores siempre intentaron crear sistemas que funcionaran como ellos pensaban que funcionaba su propia mente; intentaron poner ese conocimiento en sus sistemas. Pero finalmente resultó contraproducente y fue un desperdicio colosal del tiempo de los investigadores cuando, gracias a la ley de Moore, se hizo disponible una computación masiva y se encontró una manera de usarla bien.</p>
+      <p>En visión por computadora ha habido un patrón similar. Los primeros métodos concebían la visión como una búsqueda de bordes, o de cilindros generalizados, o en términos de características SIFT. Pero hoy todo eso se ha descartado. Las redes neuronales modernas de aprendizaje profundo usan solo las nociones de convolución y ciertos tipos de invariancias, y funcionan mucho mejor.</p>
+      <p>Esta es una gran lección. Como campo, todavía no la hemos aprendido por completo, pues seguimos cometiendo el mismo tipo de errores. Para ver esto, y para resistirlo eficazmente, tenemos que entender el atractivo de esos errores. Tenemos que aprender la amarga lección de que incorporar cómo creemos que pensamos no funciona a largo plazo. La amarga lección se basa en observaciones históricas: 1) los investigadores de IA a menudo han intentado incorporar conocimiento en sus agentes, 2) esto siempre ayuda a corto plazo y resulta personalmente satisfactorio para el investigador, pero 3) a largo plazo se estanca e incluso inhibe más progreso, y 4) el progreso decisivo finalmente llega mediante un enfoque opuesto, basado en escalar la computación por medio de la búsqueda y el aprendizaje. El éxito final queda teñido de amargura, y a menudo se digiere de manera incompleta, porque es un éxito sobre un enfoque favorito y centrado en el ser humano.</p>
+      <p>Algo que debería aprenderse de la amarga lección es el gran poder de los métodos de propósito general, de los métodos que continúan escalando con el aumento de la computación incluso cuando la computación disponible se vuelve muy grande. Los dos métodos que parecen escalar arbitrariamente de esta manera son la búsqueda y el aprendizaje.</p>
+      <p>El segundo punto general que debe aprenderse de la amarga lección es que los contenidos reales de las mentes son tremendamente, irremediablemente complejos; deberíamos dejar de intentar encontrar formas simples de pensar sobre los contenidos de las mentes, como formas simples de pensar sobre el espacio, los objetos, múltiples agentes o simetrías. Todo esto forma parte del mundo exterior arbitrario e intrínsecamente complejo. No es lo que debería incorporarse, porque su complejidad no tiene fin; en cambio, deberíamos incorporar solo los metamétodos que puedan encontrar y capturar esa complejidad arbitraria. Lo esencial de estos métodos es que pueden encontrar buenas aproximaciones, pero la búsqueda de ellas debería hacerla nuestros métodos, no nosotros. Queremos agentes de IA que puedan descubrir como nosotros podemos hacerlo, no que contengan lo que hemos descubierto. Incorporar nuestros descubrimientos solo hace más difícil ver cómo puede realizarse el proceso de descubrimiento.</p>
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      const supported = ["ar", "zh", "en", "fr", "ru", "es"];
+      const headings = {
+        ar: ["الدرس المر", "ريتش ساتون / 13 مارس 2019"],
+        zh: ["苦涩的教训", "Rich Sutton / 2019 年 3 月 13 日"],
+        en: ["The Bitter Lesson", "Rich Sutton / March 13, 2019"],
+        fr: ["La leçon amère", "Rich Sutton / 13 mars 2019"],
+        ru: ["Горький урок", "Рич Саттон / 13 марта 2019 г."],
+        es: ["La lección amarga", "Rich Sutton / 13 de marzo de 2019"]
+      };
+
+      const title = document.getElementById("page-title");
+      const meta = document.getElementById("page-meta");
+      const buttons = Array.from(document.querySelectorAll("[data-lang]"));
+      const articles = Array.from(document.querySelectorAll("article[id^='article-']"));
+
+      function normalize(code) {
+        const lower = String(code || "").toLowerCase();
+        if (lower.startsWith("zh")) return "zh";
+        const primary = lower.split("-")[0];
+        return supported.includes(primary) ? primary : "";
+      }
+
+      function browserLanguage() {
+        const languages = navigator.languages && navigator.languages.length
+          ? navigator.languages
+          : [navigator.language];
+        for (const language of languages) {
+          const match = normalize(language);
+          if (match) return match;
+        }
+        return "en";
+      }
+
+      function activate(lang) {
+        const selected = supported.includes(lang) ? lang : "en";
+        const heading = headings[selected];
+
+        document.documentElement.lang = selected === "zh" ? "zh-CN" : selected;
+        document.documentElement.dir = selected === "ar" ? "rtl" : "ltr";
+        document.title = heading[0];
+        title.textContent = heading[0];
+        meta.textContent = heading[1];
+
+        for (const article of articles) {
+          article.hidden = article.id !== "article-" + selected;
+        }
+
+        for (const button of buttons) {
+          button.setAttribute("aria-pressed", String(button.dataset.lang === selected));
+        }
+      }
+
+      for (const button of buttons) {
+        button.addEventListener("click", function () {
+          activate(button.dataset.lang);
+        });
+      }
+
+      activate(browserLanguage());
+    })();
+  </script>
+</body>
+</html>
