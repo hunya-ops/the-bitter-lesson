@@ -42,7 +42,7 @@
     }
 
     .title-copy {
-      padding-right: 142px;
+      padding-right: 108px;
     }
 
     h1 {
@@ -64,27 +64,86 @@
       position: absolute;
       top: 2px;
       right: 0;
+      z-index: 2;
+      direction: ltr;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.94rem;
     }
 
-    .language-menu select {
+    .language-current {
       appearance: none;
-      border: 1px solid var(--line);
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      border-radius: 8px;
       background: transparent;
       color: var(--muted);
       cursor: pointer;
       font: inherit;
-      min-width: 116px;
-      padding: 7px 28px 7px 10px;
+      padding: 6px 8px;
       line-height: 1.2;
     }
 
-    .language-menu select:hover,
-    .language-menu select:focus {
-      border-color: var(--accent);
-      color: var(--accent);
+    .language-current:hover,
+    .language-current:focus,
+    .language-menu[data-open="true"] .language-current {
+      background: rgba(255, 255, 255, 0.55);
+      border-color: var(--line);
+      color: var(--text);
       outline: none;
+    }
+
+    .language-arrow {
+      color: var(--muted);
+      font-size: 0.78em;
+      transform: translateY(1px);
+    }
+
+    .language-options {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: max-content;
+      min-width: 126px;
+      margin: 0;
+      padding: 5px;
+      list-style: none;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 16px 36px rgba(32, 32, 29, 0.12);
+    }
+
+    .language-options[hidden] {
+      display: none;
+    }
+
+    .language-options button {
+      appearance: none;
+      display: block;
+      width: 100%;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      line-height: 1.2;
+      padding: 7px 9px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .language-options button:hover,
+    .language-options button:focus {
+      background: #f2efe7;
+      outline: none;
+    }
+
+    .language-options button[aria-current="true"] {
+      color: var(--accent);
+      font-weight: 600;
     }
 
     .visually-hidden {
@@ -126,12 +185,11 @@
       }
 
       .title-copy {
-        padding-right: 116px;
+        padding-right: 92px;
       }
 
-      .language-menu select {
-        min-width: 98px;
-        padding: 6px 24px 6px 9px;
+      .language-current {
+        padding: 5px 7px;
       }
     }
 
@@ -153,17 +211,21 @@
         <h1 id="page-title">The Bitter Lesson</h1>
         <p class="meta" id="page-meta">Rich Sutton / March 13, 2019</p>
       </div>
-      <label class="language-menu">
-        <span class="visually-hidden">Language</span>
-        <select id="language-select" aria-label="Language">
-          <option value="ar">العربية</option>
-          <option value="zh">中文</option>
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="ru">Русский</option>
-          <option value="es">Español</option>
-        </select>
-      </label>
+      <div class="language-menu" id="language-menu">
+        <button class="language-current" id="language-current" type="button" aria-haspopup="true" aria-expanded="false">
+          <span class="visually-hidden">Language: </span>
+          <span id="language-label">English</span>
+          <span class="language-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul class="language-options" id="language-options" hidden>
+          <li><button type="button" data-lang="ar">العربية</button></li>
+          <li><button type="button" data-lang="zh">中文</button></li>
+          <li><button type="button" data-lang="en">English</button></li>
+          <li><button type="button" data-lang="fr">Français</button></li>
+          <li><button type="button" data-lang="ru">Русский</button></li>
+          <li><button type="button" data-lang="es">Español</button></li>
+        </ul>
+      </div>
     </div>
   </header>
 
@@ -249,7 +311,11 @@
 
       const title = document.getElementById("page-title");
       const meta = document.getElementById("page-meta");
-      const languageSelect = document.getElementById("language-select");
+      const languageMenu = document.getElementById("language-menu");
+      const languageCurrent = document.getElementById("language-current");
+      const languageLabel = document.getElementById("language-label");
+      const languageOptions = document.getElementById("language-options");
+      const languageButtons = Array.from(document.querySelectorAll("[data-lang]"));
       const articles = Array.from(document.querySelectorAll("article[id^='article-']"));
 
       function normalize(code) {
@@ -284,11 +350,44 @@
           article.hidden = article.id !== "article-" + selected;
         }
 
-        languageSelect.value = selected;
+        languageLabel.textContent = languageButtons.find(function (button) {
+          return button.dataset.lang === selected;
+        }).textContent;
+
+        for (const button of languageButtons) {
+          button.setAttribute("aria-current", String(button.dataset.lang === selected));
+        }
       }
 
-      languageSelect.addEventListener("change", function () {
-        activate(languageSelect.value);
+      function setMenuOpen(open) {
+        languageMenu.dataset.open = String(open);
+        languageCurrent.setAttribute("aria-expanded", String(open));
+        languageOptions.hidden = !open;
+      }
+
+      languageCurrent.addEventListener("click", function () {
+        setMenuOpen(languageOptions.hidden);
+      });
+
+      for (const button of languageButtons) {
+        button.addEventListener("click", function () {
+          activate(button.dataset.lang);
+          setMenuOpen(false);
+          languageCurrent.focus();
+        });
+      }
+
+      document.addEventListener("click", function (event) {
+        if (!languageMenu.contains(event.target)) {
+          setMenuOpen(false);
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          setMenuOpen(false);
+          languageCurrent.focus();
+        }
       });
 
       activate(browserLanguage());
